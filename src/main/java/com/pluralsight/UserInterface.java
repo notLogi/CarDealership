@@ -48,13 +48,26 @@ public class UserInterface {
     }
 
     public void processGetByPriceRequest(){
-
+        System.out.println("What is the minimum price: ");
+        double minPrice = scanner.nextDouble();
+        System.out.println("What is the maximum price: ");
+        double maxPrice = scanner.nextDouble();
+        displayVehicles(dealership.getVehiclesByPrice(minPrice, maxPrice));
+        scanner.nextLine();
     }
     public void processGetByMakeModelRequest(){
-
+        System.out.println("Enter maker: ");
+        String make = scanner.nextLine();
+        System.out.println("Enter model: ");
+        String model = scanner.nextLine();
+        displayVehicles(dealership.getVehiclesByMakeModel(make, model));
     }
     public void processGetByYearRequest(){
-
+        System.out.println("Enter minimum year: ");
+        int minYear = scanner.nextInt();
+        System.out.println("Enter maximum year: ");
+        int maxYear = scanner.nextInt();
+        displayVehicles(dealership.getVehiclesByYear(minYear, maxYear));
     }
     public void processGetByColorRequest(){
 
@@ -81,6 +94,4 @@ public class UserInterface {
             System.out.println(vehicle.toString());
         }
     }
-
-
 }
