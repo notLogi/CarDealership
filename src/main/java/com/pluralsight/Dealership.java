@@ -35,13 +35,13 @@ public class Dealership {
         return null;
     }
     public List<Vehicle> getAllVehicles(){
-        return null;
+        return inventory;
     }
     public void addVehicle(Vehicle vehicle){
-
+        inventory.add(vehicle);
     }
     public void removeVehicle(Vehicle vehicle){
-
+        inventory.remove(vehicle);
     }
 
     public String getName() {
