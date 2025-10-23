@@ -68,10 +68,6 @@ public class Dealership {
         this.phone = phone;
     }
 
-    public ArrayList<Vehicle> getInventory() {
-        return inventory;
-    }
-
     public void setInventory(ArrayList<Vehicle> inventory) {
         this.inventory = inventory;
     }
