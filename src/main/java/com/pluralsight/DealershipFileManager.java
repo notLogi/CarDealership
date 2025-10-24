@@ -33,16 +33,17 @@ public class DealershipFileManager {
             //}
             return dealership;
         } catch (Exception e) {
-            System.err.println("CSV can't be found");
+            System.err.println("CSV can't be found!!!");
             return null;
         }
     }
-    public static void saveDealership(Dealership dealership){
+    public void saveDealership(Dealership dealership){
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))){
             writer.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone() + "\n");
             for(Vehicle vehicle : dealership.getAllVehicles()){
-                writer.write(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + String.format("%.2f", vehicle.getPrice()) + "\n");
+                writer.write(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + String.format("%.2f", vehicle.getPrice()) + "\n");
             }
+            writer.flush();
             System.out.println("Overwrite successful!");
         } catch (Exception e) {
             System.err.println("Failed to write to csv file");

@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.List;
 
 public class UserInterface {
-    private Dealership dealership;
+    Dealership dealership;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -42,7 +42,6 @@ public class UserInterface {
                 default -> System.out.println("Invalid input");
             }
         }
-        DealershipFileManager.saveDealership(dealership);
     }
 
     private Dealership init(){
@@ -119,9 +118,12 @@ public class UserInterface {
         else System.out.println("No vehicles matched your query");
     }
     public void processGetAllVehiclesRequest(){
-        displayVehicles(dealership.getAllVehicles());
+        List<Vehicle> temp = dealership.getAllVehicles();
+        if(temp != null) displayVehicles(temp);
+        else System.out.println("No vehicles are on the CSV.");
     }
     public void processAddVehicleRequest(){
+        DealershipFileManager dfm = new DealershipFileManager();
         try{
             System.out.println("Do you want to add a vehicle? Start off with the vin first if so. If not, type 0 to exit.");
             int vin = scanner.nextInt();
@@ -142,6 +144,7 @@ public class UserInterface {
             System.out.println("Input the price of vehicle: ");
             double price = scanner.nextDouble();
             dealership.addVehicle(new Vehicle(vin, year, make, model, vehicleType, color, odometer, price));
+            dfm.saveDealership(dealership);
             System.out.println("Vehicle added successfully");
         }
         catch(Exception ex){
@@ -149,12 +152,14 @@ public class UserInterface {
         }
     }
     public void processRemoveVehicleRequest(){
+        DealershipFileManager dfm = new DealershipFileManager();
         System.out.println("Select a vehicle to remove from your inventory. Enter 0 if you want to exit.");
         int vin = scanner.nextInt();
         if(vin == 0) return;
         for(Vehicle vehicle : dealership.getAllVehicles()){
             if(vin == vehicle.getVin()){
                 dealership.removeVehicle(vehicle);
+                dfm.saveDealership(dealership);
                 return;
             }
         }
