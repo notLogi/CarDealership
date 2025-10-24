@@ -54,39 +54,55 @@ public class UserInterface {
         double minPrice = scanner.nextDouble();
         System.out.println("What is the maximum price: ");
         double maxPrice = scanner.nextDouble();
-        displayVehicles(dealership.getVehiclesByPrice(minPrice, maxPrice));
+        List<Vehicle> temp = dealership.getVehiclesByPrice(minPrice, maxPrice);
+        if(temp != null) displayVehicles(temp);
+        else System.out.println("No vehicles matched your query");
     }
+
     public void processGetByMakeModelRequest(){
         System.out.println("Enter maker: ");
         String make = scanner.nextLine();
         System.out.println("Enter model: ");
         String model = scanner.nextLine();
-        displayVehicles(dealership.getVehiclesByMakeModel(make, model));
+        List<Vehicle> temp = dealership.getVehiclesByMakeModel(make, model);
+        if(temp != null) displayVehicles(temp);
+        else System.out.println("No vehicles matched your query");
     }
+
     public void processGetByYearRequest(){
         System.out.println("Enter minimum year: ");
         int minYear = scanner.nextInt();
         System.out.println("Enter maximum year: ");
         int maxYear = scanner.nextInt();
-        displayVehicles(dealership.getVehiclesByYear(minYear, maxYear));
+        List<Vehicle> temp = dealership.getVehiclesByYear(minYear, maxYear);
+        if(temp != null) displayVehicles(temp);
+        else System.out.println("No vehicles matched your query");
     }
+
     public void processGetByColorRequest(){
         System.out.println("Enter color you want to filter: ");
         String color = scanner.nextLine();
-        displayVehicles(dealership.getVehiclesByColor(color));
+        List<Vehicle> temp = dealership.getVehiclesByColor(color);
+        if(temp != null) displayVehicles(temp);
+        else System.out.println("No vehicles matched your query");
     }
+
     public void processGetByMileageRequest(){
         System.out.println("Enter your minimal mileage: ");
         int minMileage = scanner.nextInt();
         System.out.println("Enter your maximum mileage: ");
         int maxMileage = scanner.nextInt();
-        displayVehicles(dealership.getVehiclesByMileage(minMileage, maxMileage));
+        List<Vehicle> temp = dealership.getVehiclesByMileage(minMileage, maxMileage);
+        if(temp != null) displayVehicles(temp);
+        else System.out.println("No vehicles matched your query");
     }
 
     public void processGetByVehicleTypeRequest(){
         System.out.println("Enter your preferred vehicle type: ");
         String vehicleType = scanner.nextLine();
-        displayVehicles((dealership.getVehiclesByType(vehicleType)));
+        List<Vehicle> temp = dealership.getVehiclesByType(vehicleType);
+        if(temp != null) displayVehicles(temp);
+        else System.out.println("No vehicles matched your query");
     }
     public void processGetAllVehiclesRequest(){
         displayVehicles(dealership.getAllVehicles());
