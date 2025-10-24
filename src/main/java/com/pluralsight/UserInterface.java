@@ -42,6 +42,7 @@ public class UserInterface {
                 default -> System.out.println("Invalid input");
             }
         }
+        DealershipFileManager.saveDealership(dealership);
     }
 
     private Dealership init(){
@@ -50,19 +51,23 @@ public class UserInterface {
     }
 
     public void processGetByPriceRequest(){
-        System.out.println("What is the minimum price: ");
-        double minPrice = scanner.nextDouble();
-        System.out.println("What is the maximum price: ");
-        double maxPrice = scanner.nextDouble();
-        List<Vehicle> temp = dealership.getVehiclesByPrice(minPrice, maxPrice);
-        if(temp != null) displayVehicles(temp);
-        else System.out.println("No vehicles matched your query");
+        try {
+            System.out.println("What is the minimum price: ");
+            double minPrice = scanner.nextDouble();
+            System.out.println("What is the maximum price: ");
+            double maxPrice = scanner.nextDouble();
+            List<Vehicle> temp = dealership.getVehiclesByPrice(minPrice, maxPrice);
+            if (temp != null) displayVehicles(temp);
+            else System.out.println("No vehicles matched your query");
+        } catch (Exception e) {
+            System.err.println("Your input is not a number");
+        }
     }
 
     public void processGetByMakeModelRequest(){
-        System.out.println("Enter maker: ");
+        System.out.println("Enter maker(Can leave empty): ");
         String make = scanner.nextLine();
-        System.out.println("Enter model: ");
+        System.out.println("Enter model(Can leave empty): ");
         String model = scanner.nextLine();
         List<Vehicle> temp = dealership.getVehiclesByMakeModel(make, model);
         if(temp != null) displayVehicles(temp);
@@ -70,13 +75,17 @@ public class UserInterface {
     }
 
     public void processGetByYearRequest(){
-        System.out.println("Enter minimum year: ");
-        int minYear = scanner.nextInt();
-        System.out.println("Enter maximum year: ");
-        int maxYear = scanner.nextInt();
-        List<Vehicle> temp = dealership.getVehiclesByYear(minYear, maxYear);
-        if(temp != null) displayVehicles(temp);
-        else System.out.println("No vehicles matched your query");
+        try {
+            System.out.println("Enter minimum year: ");
+            int minYear = scanner.nextInt();
+            System.out.println("Enter maximum year: ");
+            int maxYear = scanner.nextInt();
+            List<Vehicle> temp = dealership.getVehiclesByYear(minYear, maxYear);
+            if (temp != null) displayVehicles(temp);
+            else System.out.println("No vehicles matched your query");
+        } catch (Exception e) {
+            System.err.println("Your input is not a number");
+        }
     }
 
     public void processGetByColorRequest(){
@@ -88,13 +97,18 @@ public class UserInterface {
     }
 
     public void processGetByMileageRequest(){
-        System.out.println("Enter your minimal mileage: ");
-        int minMileage = scanner.nextInt();
-        System.out.println("Enter your maximum mileage: ");
-        int maxMileage = scanner.nextInt();
-        List<Vehicle> temp = dealership.getVehiclesByMileage(minMileage, maxMileage);
-        if(temp != null) displayVehicles(temp);
-        else System.out.println("No vehicles matched your query");
+        try {
+            System.out.println("Enter your minimal mileage: ");
+            int minMileage = scanner.nextInt();
+            System.out.println("Enter your maximum mileage: ");
+            int maxMileage = scanner.nextInt();
+
+            List<Vehicle> temp = dealership.getVehiclesByMileage(minMileage, maxMileage);
+            if (temp != null) displayVehicles(temp);
+            else System.out.println("No vehicles matched your query");
+        } catch (Exception e) {
+            System.err.println("Your input is not a number");
+        }
     }
 
     public void processGetByVehicleTypeRequest(){

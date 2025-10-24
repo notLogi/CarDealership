@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Dealership {
     private String name;
     private String address;
@@ -49,6 +50,7 @@ public class Dealership {
                 filteredList.add(vehicle);
             }
         }
+        if(filteredList.isEmpty()) return null;
         return filteredList;
     }
     public List<Vehicle> getVehiclesByColor(String color){
@@ -90,5 +92,17 @@ public class Dealership {
     }
     public void removeVehicle(Vehicle vehicle){
         inventory.remove(vehicle);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }

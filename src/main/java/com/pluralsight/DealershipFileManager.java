@@ -37,13 +37,15 @@ public class DealershipFileManager {
             return null;
         }
     }
-    public void saveDealership(Dealership dealership){
-        /*try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))){
-            for(Vehicle vehicle : dealership.getInventory()){
-                writer.write()
+    public static void saveDealership(Dealership dealership){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))){
+            writer.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone() + "\n");
+            for(Vehicle vehicle : dealership.getAllVehicles()){
+                writer.write(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + String.format("%.2f", vehicle.getPrice()) + "\n");
             }
+            System.out.println("Overwrite successful!");
         } catch (Exception e) {
             System.err.println("Failed to write to csv file");
-        }*/
+        }
     }
 }
