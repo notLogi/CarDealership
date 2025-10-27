@@ -14,8 +14,9 @@ public class UserInterface {
         dealership = init();
         boolean didExit = false;
         while(!didExit){
-            System.out.println("What do you want to do? Here's a list: ");//Concatenation can be replaced with text block(Intellij suggested)
-            System.out.println("""
+            try{
+                System.out.println("What do you want to do? Here's a list: ");//Concatenation can be replaced with text block(Intellij suggested)
+                System.out.println("""
                     1 - Find vehicles within a price range
                     2 - Find vehicles by make / model
                     3 - Find vehicles by year range
@@ -26,22 +27,27 @@ public class UserInterface {
                     8 - Add a vehicle
                     9 - Remove a vehicle
                     99 - Quit""");
-            int input = scanner.nextInt();
-            scanner.nextLine();
-            switch(input){
-                case 1 -> processGetByPriceRequest();
-                case 2 -> processGetByMakeModelRequest();
-                case 3 -> processGetByYearRequest();
-                case 4 -> processGetByColorRequest();
-                case 5 -> processGetByMileageRequest();
-                case 6 -> processGetByVehicleTypeRequest();
-                case 7 -> processGetAllVehiclesRequest();
-                case 8 -> processAddVehicleRequest();
-                case 9 -> processRemoveVehicleRequest();
-                case 99 -> didExit = true;
-                default -> System.out.println("Invalid input");
+                int input = scanner.nextInt();
+                scanner.nextLine();
+                switch(input){
+                    case 1 -> processGetByPriceRequest();
+                    case 2 -> processGetByMakeModelRequest();
+                    case 3 -> processGetByYearRequest();
+                    case 4 -> processGetByColorRequest();
+                    case 5 -> processGetByMileageRequest();
+                    case 6 -> processGetByVehicleTypeRequest();
+                    case 7 -> processGetAllVehiclesRequest();
+                    case 8 -> processAddVehicleRequest();
+                    case 9 -> processRemoveVehicleRequest();
+                    case 99 -> didExit = true;
+                    default -> System.out.println("Invalid input");
+                }
+            } catch (Exception e) {
+                System.err.println("You entered a string");
+                scanner.nextLine();
             }
         }
+        scanner.close();
     }
 
     private Dealership init(){
