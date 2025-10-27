@@ -41,23 +41,19 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - IntelliJ IDEA
 
 ## Demo(Left to right, top to bottom)
-<img width="251" height="148" alt="image" src="https://github.com/user-attachments/assets/d0781eaf-e249-412b-95b6-ecd3bcf05429" />
-<img width="492" height="150" alt="image" src="https://github.com/user-attachments/assets/ca8a9aad-a700-470c-874d-f2009c9f38f8" />
-<img width="241" height="151" alt="image" src="https://github.com/user-attachments/assets/cc8f13a4-151d-43a1-8cd7-16c6a5971009" />
-<img width="600" height="175" alt="image" src="https://github.com/user-attachments/assets/23e04c53-cf64-48fa-9bf1-48b8c3de3cb0" />
-<img width="574" height="157" alt="image" src="https://github.com/user-attachments/assets/505c1cc6-1371-4c60-984d-c7de3ee37570" />
-<img width="319" height="150" alt="image" src="https://github.com/user-attachments/assets/8bd37048-1ca6-4479-859f-72a4c0fc4b30" />
+<img width="400" height="281" alt="image" src="https://github.com/user-attachments/assets/72344adc-1d5d-4df7-92f3-9ba98bb7cc18" />
+<img width="1037" height="313" alt="image" src="https://github.com/user-attachments/assets/05688fb1-3963-41ee-8312-2e89bf02c788" />
+<img width="797" height="308" alt="image" src="https://github.com/user-attachments/assets/0a758032-a8d4-46ab-ae59-cb59209c5d5d" />
+<img width="729" height="348" alt="image" src="https://github.com/user-attachments/assets/38868737-fa6d-4c2b-af35-3393b705d321" />
+<img width="426" height="327" alt="image" src="https://github.com/user-attachments/assets/99fdc697-d464-423f-962a-0f67579377a9" />
 
 ## An error showcase:
-<img width="468" height="160" alt="image" src="https://github.com/user-attachments/assets/a1914203-d68c-49cc-b710-b987352b2a8c" />
+<img width="572" height="297" alt="image" src="https://github.com/user-attachments/assets/5614af87-97b3-4af0-8e0a-07629f1afc51" />
+
 
 ## Interesting Part of my Code:
 - An interesting part of my code is the DealerShipManager class, where it does not directly create a Dealership class, instead gets data and returns it when needed.
 
-## Resources used:
-- https://www.w3schools.com/java/java_hashmap.asp
-- https://www.w3schools.com/java/ref_hashmap_entryset.asp
-- https://stackoverflow.com/questions/40828663/how-to-subtract-values-in-a-single-hashmap-while-iterating-over-the-map
 
 ## Contributors:
 - Roger Su
