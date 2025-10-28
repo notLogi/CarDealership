@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 
 public class Dealership {
@@ -18,72 +19,42 @@ public class Dealership {
     }
 
     public List<Vehicle> getVehiclesByPrice(double min, double max){
-        ArrayList<Vehicle> filteredList = new ArrayList<>();
-        for(Vehicle vehicle : inventory){
-            if(vehicle.getPrice() >= min && vehicle.getPrice() <= max){
-                filteredList.add(vehicle);
-            }
-        }
-        if(filteredList.isEmpty()) return null;
-        return filteredList;
+        return filteredListHelper(vehicle -> vehicle.getPrice() >= min && vehicle.getPrice() <= max);
     }
     public List<Vehicle> getVehiclesByMakeModel(String make, String model){
-        if(make.isEmpty() && model.isEmpty()) return null;
-        ArrayList<Vehicle> filteredList = new ArrayList<>();
-        for(Vehicle vehicle : inventory){
-            if(!make.isEmpty() && !model.isEmpty()){
-                if(vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)){
-                    filteredList.add(vehicle);
-                }
-            }
-            else if(vehicle.getMake().equalsIgnoreCase(make) || vehicle.getModel().equalsIgnoreCase(model)){
-                filteredList.add(vehicle);
-            }
+        if(make.isEmpty() && model.isEmpty()) return new ArrayList<>();
+        if(!make.isEmpty() && !model.isEmpty()){
+            return filteredListHelper(vehicle -> vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model));
         }
-        if(filteredList.isEmpty()) return null;
-        return filteredList;
+        else{
+            return filteredListHelper(vehicle -> vehicle.getMake().equalsIgnoreCase(make) || vehicle.getModel().equalsIgnoreCase(model));
+        }
     }
     public List<Vehicle> getVehiclesByYear(int min, int max){
-        ArrayList<Vehicle> filteredList = new ArrayList<>();
-        for(Vehicle vehicle : inventory){
-            if(vehicle.getYear() >= min && vehicle.getYear() <= max){
-                filteredList.add(vehicle);
-            }
-        }
-        if(filteredList.isEmpty()) return null;
-        return filteredList;
+        return filteredListHelper(vehicle -> vehicle.getYear() >= min && vehicle.getYear() <= max);
     }
     public List<Vehicle> getVehiclesByColor(String color){
-        ArrayList<Vehicle> filteredList = new ArrayList<>();
-        for(Vehicle vehicle : inventory){
-            if(vehicle.getColor().equalsIgnoreCase(color)){
-                filteredList.add(vehicle);
-            }
-        }
-        if(filteredList.isEmpty()) return null;
-        return filteredList;
+        if(color == null || color.isEmpty()) return new ArrayList<>();
+        return filteredListHelper(vehicle -> vehicle.getColor().equalsIgnoreCase((color)));
     }
     public List<Vehicle> getVehiclesByMileage(double min, double max){
-        ArrayList<Vehicle> filteredList = new ArrayList<>();
-        for(Vehicle vehicle : inventory){
-            if(vehicle.getOdometer() >= min && vehicle.getOdometer() <= max){
-                filteredList.add(vehicle);
-            }
-        }
-        if(filteredList.isEmpty()) return null;
-        return filteredList;
+        return filteredListHelper(vehicle -> vehicle.getOdometer() >= min && vehicle.getOdometer() <= max);
     }
     public List<Vehicle> getVehiclesByType(String vehicleType){
-        if(vehicleType.isEmpty()) return null;
+        if(vehicleType == null || vehicleType.isEmpty()) return new ArrayList<>();
+        return filteredListHelper(vehicle -> vehicle.getVehicleType().equalsIgnoreCase((vehicleType)));
+    }
+
+    public List<Vehicle> filteredListHelper(Predicate<Vehicle> predicate){
         ArrayList<Vehicle> filteredList = new ArrayList<>();
         for(Vehicle vehicle : inventory){
-            if(vehicle.getVehicleType().equalsIgnoreCase(vehicleType)){
+            if(predicate.test(vehicle)){
                 filteredList.add(vehicle);
             }
         }
-        if(filteredList.isEmpty()) return null;
-        return filteredList;
+        return filteredList.isEmpty() ? new ArrayList<>() : filteredList;
     }
+
     public List<Vehicle> getAllVehicles(){
         return inventory;
     }

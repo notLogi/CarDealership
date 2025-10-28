@@ -43,7 +43,7 @@ public class UserInterface {
                     default -> System.out.println("Invalid input");
                 }
             } catch (Exception e) {
-                System.err.println("You entered a string");
+                System.err.println("You entered a string or no input");
                 scanner.nextLine();
             }
         }
@@ -62,10 +62,11 @@ public class UserInterface {
             System.out.println("What is the maximum price: ");
             double maxPrice = scanner.nextDouble();
             List<Vehicle> temp = dealership.getVehiclesByPrice(minPrice, maxPrice);
-            if (temp != null) displayVehicles(temp);
-            else System.out.println("No vehicles matched your query");
+            if (temp.isEmpty()) System.out.println("No vehicles matched your query");
+            else displayVehicles(temp);
         } catch (Exception e) {
             System.err.println("Your input is not a number");
+            scanner.nextLine();
         }
     }
 
@@ -75,8 +76,8 @@ public class UserInterface {
         System.out.println("Enter model(Can leave empty): ");
         String model = scanner.nextLine();
         List<Vehicle> temp = dealership.getVehiclesByMakeModel(make, model);
-        if(temp != null) displayVehicles(temp);
-        else System.out.println("No vehicles matched your query");
+        if (temp.isEmpty()) System.out.println("No vehicles matched your query");
+        else displayVehicles(temp);
     }
 
     public void processGetByYearRequest(){
@@ -86,10 +87,11 @@ public class UserInterface {
             System.out.println("Enter maximum year: ");
             int maxYear = scanner.nextInt();
             List<Vehicle> temp = dealership.getVehiclesByYear(minYear, maxYear);
-            if (temp != null) displayVehicles(temp);
-            else System.out.println("No vehicles matched your query");
+            if (temp.isEmpty()) System.out.println("No vehicles matched your query");
+            else displayVehicles(temp);
         } catch (Exception e) {
             System.err.println("Your input is not a number");
+            scanner.nextLine();
         }
     }
 
@@ -97,8 +99,8 @@ public class UserInterface {
         System.out.println("Enter color you want to filter: ");
         String color = scanner.nextLine();
         List<Vehicle> temp = dealership.getVehiclesByColor(color);
-        if(temp != null) displayVehicles(temp);
-        else System.out.println("No vehicles matched your query");
+        if (temp.isEmpty()) System.out.println("No vehicles matched your query");
+        else displayVehicles(temp);
     }
 
     public void processGetByMileageRequest(){
@@ -107,12 +109,13 @@ public class UserInterface {
             int minMileage = scanner.nextInt();
             System.out.println("Enter your maximum mileage: ");
             int maxMileage = scanner.nextInt();
-
+            scanner.nextLine();
             List<Vehicle> temp = dealership.getVehiclesByMileage(minMileage, maxMileage);
-            if (temp != null) displayVehicles(temp);
-            else System.out.println("No vehicles matched your query");
+            if (temp.isEmpty()) System.out.println("No vehicles matched your query");
+            else displayVehicles(temp);
         } catch (Exception e) {
             System.err.println("Your input is not a number");
+            scanner.nextLine();
         }
     }
 
@@ -120,13 +123,13 @@ public class UserInterface {
         System.out.println("Enter your preferred vehicle type: ");
         String vehicleType = scanner.nextLine();
         List<Vehicle> temp = dealership.getVehiclesByType(vehicleType);
-        if(temp != null) displayVehicles(temp);
-        else System.out.println("No vehicles matched your query");
+        if (temp.isEmpty()) System.out.println("No vehicles matched your query");
+        else displayVehicles(temp);
     }
     public void processGetAllVehiclesRequest(){
         List<Vehicle> temp = dealership.getAllVehicles();
-        if(temp != null) displayVehicles(temp);
-        else System.out.println("No vehicles are on the CSV.");
+        if (temp.isEmpty()) System.out.println("No vehicles are listed on the CSV");
+        else displayVehicles(temp);
     }
     public void processAddVehicleRequest(){
         DealershipFileManager dfm = new DealershipFileManager();
@@ -173,6 +176,7 @@ public class UserInterface {
     }
 
     private void displayVehicles(List<Vehicle> vehicleList){
+        if(vehicleList.isEmpty()) return;
         for(Vehicle vehicle : vehicleList){
             System.out.println(vehicle.toString());
         }
