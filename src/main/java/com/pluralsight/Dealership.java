@@ -34,14 +34,14 @@ public class Dealership {
         return filteredListHelper(vehicle -> vehicle.getYear() >= min && vehicle.getYear() <= max);
     }
     public List<Vehicle> getVehiclesByColor(String color){
-        if(color == null || color.isEmpty()) return new ArrayList<>();
+        if(color.isEmpty()) return new ArrayList<>();
         return filteredListHelper(vehicle -> vehicle.getColor().equalsIgnoreCase((color)));
     }
     public List<Vehicle> getVehiclesByMileage(double min, double max){
         return filteredListHelper(vehicle -> vehicle.getOdometer() >= min && vehicle.getOdometer() <= max);
     }
     public List<Vehicle> getVehiclesByType(String vehicleType){
-        if(vehicleType == null || vehicleType.isEmpty()) return new ArrayList<>();
+        if(vehicleType.isEmpty()) return new ArrayList<>();
         return filteredListHelper(vehicle -> vehicle.getVehicleType().equalsIgnoreCase((vehicleType)));
     }
 
